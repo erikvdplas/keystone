@@ -33,6 +33,7 @@ module.exports = Field.create({
 		note: PropTypes.string,
 		path: PropTypes.string.isRequired,
 		thumb: PropTypes.bool,
+		imgStyle: PropTypes.string,
 		value: PropTypes.shape({
 			filename: PropTypes.string,
 			// TODO: these are present but not used in the UI,
@@ -201,6 +202,7 @@ module.exports = Field.create({
 	},
 	renderImagePreview () {
 		const imageSource = this.getFileUrl();
+		const imgStyle = this.props.imgStyle ? this.props.imgStyle : {};
 		return (
 			<ImageThumbnail
 				component="a"
@@ -208,7 +210,7 @@ module.exports = Field.create({
 				target="__blank"
 				style={{ float: 'left', marginRight: '1em', maxWidth: '50%' }}
 			>
-				<img src={imageSource} style={{ 'max-height': 100, 'max-width': '100%' }} />
+				<img src={imageSource} style={{ 'max-height': 100, 'max-width': '100%', ...imgStyle }} />
 			</ImageThumbnail>
 		);
 	},
